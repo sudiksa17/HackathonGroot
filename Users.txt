@@ -1,0 +1,4 @@
+{"custId":"121","firstname":"Gary","lastname":"Milton","password":"Gary123","acctNumber":"10001","userType":"G"}
+{"custId":"122","firstname":"Harry","lastname":"Milton","password":"Harry123","acctNumber":"10001","userType":"M"}
+{"custId":"123","firstname":"Montu","lastname":"Ghosla","password":"Montu123","acctNumber":"10002","userType":"G"}
+{"custId":"124","firstname":"Chintu","lastname":"Ghosla","password":"Chintu123","acctNumber":"10002","userType":"M"}
