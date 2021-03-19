@@ -44,7 +44,6 @@ public class LoginService {
       while (myReader.hasNextLine()) {
         String data = myReader.nextLine();
         acctList.add(jsonUtils.getObjectFromJson(data,Acct.class));
-        System.out.println(data);
       }
       myReader.close();
     } catch (FileNotFoundException e) {
@@ -54,6 +53,25 @@ public class LoginService {
       e.printStackTrace();
     }
     return acctList;
+  }
+
+  public List<TxnHistory> readTxns() {
+    List<TxnHistory> txnHistories = new ArrayList<>();
+    try {
+      File myObj = new File("TxnHistory.txt");
+      Scanner myReader = new Scanner(myObj);
+      while (myReader.hasNextLine()) {
+        String data = myReader.nextLine();
+        txnHistories.add(jsonUtils.getObjectFromJson(data,TxnHistory.class));
+      }
+      myReader.close();
+    } catch (FileNotFoundException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return txnHistories;
   }
 }
 

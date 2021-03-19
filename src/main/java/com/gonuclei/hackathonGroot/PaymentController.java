@@ -1,25 +1,25 @@
 package com.gonuclei.hackathonGroot;
 
 import com.gonuclei.hackathonGroot.request.PaymentRequest;
-import com.gonuclei.hackathonGroot.response.PaymentResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("payment")
@@ -67,12 +67,27 @@ public class PaymentController {
       response.put("Status",status);
       return response;
     }
-    //validateAmt
+    String orderId = String.valueOf(UUID.randomUUID().hashCode());
+    String timestamp = String.valueOf(new Timestamp(System.currentTimeMillis()));
+    TxnHistory txnHistory = new TxnHistory();
+    txnHistory.setAccount(acct.getAcctNumber());
+    txnHistory.setAmount(paymentRequest.getAmount());
+    txnHistory.setTxnType("D");
+    txnHistory.setMessage("Send to");
+    txnHistory.setUpiId(paymentRequest.getUpiId());
+    txnHistory.setUserType(paymentRequest.getUserType());
+    txnHistory.setOrderId(orderId);
+    txnHistory.setTimestamp(timestamp);
     //validatePin
     if (!paymentRequest.getPin().equals(acct.getPin())) {
       status.put("message","pin does not match");
       status.put("code",303);
       response.put("Status",status);
+      txnHistory.setTxnStatus("Failure");
+      BufferedWriter writer = new BufferedWriter(new FileWriter("TxnHistory.txt", true));
+      writer.newLine();
+      writer.append(txnHistory.buildParams());
+      writer.close();
       return response;
     }
     //performTxn
@@ -92,19 +107,37 @@ public class PaymentController {
       balance = balance - Integer.parseInt(paymentRequest.getAmount());
       FileOutputStream out = new FileOutputStream("/Users/sudikshasrivastava/Desktop/HackathonGroot/src/main/resources/application.properties");
       properties.setProperty("acct1balance", String.valueOf(balance));
+      if (remBal>balance) {
+        properties.setProperty("acct1remBal", String.valueOf(balance));
+      }
       properties.store(out, null);
       out.close();
     } else {
       status.put("message","limit exceeded");
       status.put("code",304);
       response.put("Status",status);
+      txnHistory.setTxnStatus("Failure");
+      BufferedWriter writer = new BufferedWriter(new FileWriter("TxnHistory.txt", true));
+      writer.newLine();
+      writer.append(txnHistory.buildParams());
+      writer.close();
       return response;
     }
     //store in txn history
+    txnHistory.setTxnStatus("Success");
+    BufferedWriter writer = new BufferedWriter(new FileWriter("TxnHistory.txt", true));
+    writer.newLine();
+    writer.append(txnHistory.buildParams());
+    writer.close();
     //return response
     status.put("message","success");
     status.put("code",200);
     response.put("Status",status);
+    response.put("message",txnHistory.getMessage());
+    response.put("order_id",orderId);
+    response.put("upi_id",paymentRequest.getUpiId());
+    response.put("amount",paymentRequest.getAmount());
+    response.put("timestamp",timestamp);
     response.put("remaining_amount",String.valueOf(remBal));
     return response;
   }
