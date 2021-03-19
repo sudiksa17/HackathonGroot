@@ -7,6 +7,9 @@ public class PaymentRequest {
   @JsonProperty("customerId")
   private String customerId;
 
+  @JsonProperty("userType")
+  private String userType;
+
   @JsonProperty("pin")
   private String pin;
 
@@ -18,6 +21,14 @@ public class PaymentRequest {
 
   public String getCustomerId() {
     return customerId;
+  }
+
+  public String getUserType() {
+    return userType;
+  }
+
+  public void setUserType(String userType) {
+    this.userType = userType;
   }
 
   public void setCustomerId(String customerId) {
