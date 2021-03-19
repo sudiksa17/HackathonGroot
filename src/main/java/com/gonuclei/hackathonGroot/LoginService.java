@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -24,7 +25,6 @@ public class LoginService {
       while (myReader.hasNextLine()) {
         String data = myReader.nextLine();
         usersList.add(jsonUtils.getObjectFromJson(data,Users.class));
-        System.out.println(data);
       }
       myReader.close();
     } catch (FileNotFoundException e) {
@@ -34,6 +34,14 @@ public class LoginService {
       e.printStackTrace();
     }
     return usersList;
+  }
+
+  public void writeToPosition(String filename, String data, long position)
+    throws IOException {
+    RandomAccessFile writer = new RandomAccessFile(filename, "rw");
+    writer.seek(position);
+    writer.writeBytes(data);
+    writer.close();
   }
 }
 
