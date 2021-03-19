@@ -1,4 +1,4 @@
-package com.gonuclei.hackathonGroot;
+package com.gonuclei.hackathonGroot.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

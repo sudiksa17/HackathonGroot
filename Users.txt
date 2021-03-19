@@ -1,4 +1,8 @@
 {"custId":"121","firstname":"Gary","lastname":"Milton","password":"Gary123","acctNumber":"10001","userType":"G"}
 {"custId":"122","firstname":"Harry","lastname":"Milton","password":"Harry123","acctNumber":"10001","userType":"M"}
-{"custId":"123","firstname":"Montu","lastname":"Ghosla","password":"Montu123","acctNumber":"10002","userType":"G"}
-{"custId":"124","firstname":"Chintu","lastname":"Ghosla","password":"Chintu123","acctNumber":"10002","userType":"M"}
+{"custId":"123","firstname":"Homer","lastname":"Simpsons","password":"Homer123","acctNumber":"10002","userType":"G"}
+{"custId":"124","firstname":"Bart","lastname":"Simpsons","password":"Bart123","acctNumber":"10002","userType":"M"}
+{"custId":"125","firstname":"Tony","lastname":"Stark","password":"Tony123","acctNumber":"10003","userType":"G"}
+{"custId":"126","firstname":"Morgan","lastname":"Milton","password":"Morgan123","acctNumber":"10003","userType":"M"}
+{"custId":"127","firstname":"Fred","lastname":"Flintstone","password":"Fred123","acctNumber":"10004","userType":"G"}
+{"custId":"128","firstname":"Barny","lastname":"Flintstone","password":"Barny123","acctNumber":"10004","userType":"M"}
