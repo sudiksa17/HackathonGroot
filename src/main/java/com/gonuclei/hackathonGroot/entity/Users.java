@@ -1,25 +1,31 @@
-package com.gonuclei.hackathonGroot;
+package com.gonuclei.hackathonGroot.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "customers_demo")
 public class Users {
 
-  @JsonProperty("custId")
-  private String custId;
+  @Id
+  @Column(name = "cust_id")
+  private Long custId;
 
-  @JsonProperty("firstname")
+  @Column(name = "first_name")
   private String firstname;
 
-  @JsonProperty("lastname")
+  @Column(name = "last_name")
   private String lastname;
 
-  @JsonProperty("password")
+  @Column(name = "pass")
   private String password;
 
-  @JsonProperty("acctNumber")
+  @Column(name = "account_number")
   private String acctNumber;
 
-  @JsonProperty("userType")
+  @Column(name = "user_type")
   private String userType;
 
   public String getUserType() {
@@ -30,11 +36,11 @@ public class Users {
     this.userType = userType;
   }
 
-  public String getCustId() {
+  public Long getCustId() {
     return custId;
   }
 
-  public void setCustId(String custId) {
+  public void setCustId(Long custId) {
     this.custId = custId;
   }
 

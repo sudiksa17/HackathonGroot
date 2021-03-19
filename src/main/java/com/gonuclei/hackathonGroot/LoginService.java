@@ -1,5 +1,6 @@
 package com.gonuclei.hackathonGroot;
 
+import com.gonuclei.hackathonGroot.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,6 @@ public class LoginService {
       while (myReader.hasNextLine()) {
         String data = myReader.nextLine();
         usersList.add(jsonUtils.getObjectFromJson(data,Users.class));
-        System.out.println(data);
       }
       myReader.close();
     } catch (FileNotFoundException e) {
@@ -35,6 +35,26 @@ public class LoginService {
     }
     return usersList;
   }
+
+  public List<Acct> readAcct() {
+    List<Acct> acctList = new ArrayList<>();
+    try {
+      File myObj = new File("Acct.txt");
+      Scanner myReader = new Scanner(myObj);
+      while (myReader.hasNextLine()) {
+        String data = myReader.nextLine();
+        acctList.add(jsonUtils.getObjectFromJson(data,Acct.class));
+      }
+      myReader.close();
+    } catch (FileNotFoundException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return acctList;
+  }
+
 }
 
 
