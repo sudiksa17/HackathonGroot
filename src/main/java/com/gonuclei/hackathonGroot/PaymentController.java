@@ -64,22 +64,11 @@ public class PaymentController {
     }
     String orderId = String.valueOf(rand);
     String timestamp = String.valueOf(new Timestamp(System.currentTimeMillis()));
-//    TxnHistory txnHistory = new TxnHistory();
-//    txnHistory.setAccount(account.getAccountNumber());
-//    txnHistory.setAmount(paymentRequest.getAmount());
-//    txnHistory.setTxnType("D");
-//    txnHistory.setMessage("Send to");
-//    txnHistory.setUpiId(paymentRequest.getUpiId());
-//    txnHistory.setUserType(paymentRequest.getUserType());
-//    txnHistory.setOrderId(orderId);
-//    txnHistory.setTimestamp(timestamp);
     //validatePin
     if (!paymentRequest.getPin().equals(account.getPin())) {
       status.put("message","pin does not match");
       status.put("code",303);
       response.put("Status",status);
-//      txnHistory.setTxnStatus("Failure");
-//      txnRepoService.save(txnHistory);
       return response;
     }
     //performTxn
@@ -103,14 +92,8 @@ public class PaymentController {
       status.put("message","limit exceeded");
       status.put("code",304);
       response.put("Status",status);
-//      txnHistory.setTxnStatus("Failure");
-//      txnRepoService.save(txnHistory);
       return response;
     }
-    //store in txn history
-//    txnHistory.setTxnStatus("Success");
-//    txnRepoService.save(txnHistory);
-    //return response
     status.put("message","success");
     status.put("code",200);
     response.put("Status",status);
