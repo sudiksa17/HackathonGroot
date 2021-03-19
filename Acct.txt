@@ -1,4 +1,4 @@
-{"acctNumber":"121","pin":"121","GCustId":"Gary","MCustId":"Milton","balance":"251652","remainingBalLeft":"32442","maxLimit":"32442"}
-{"acctNumber":"122","pin":"121","GCustId":"Harry","MCustId":"Milton","balance":"23313","remainingBalLeft":"3343","maxLimit":"3343"}
-{"acctNumber":"123","pin":"121","GCustId":"Montu","MCustId":"Ghosla","balance":"333112","remainingBalLeft":"2333","maxLimit":"2333"}
-{"acctNumber":"124","pin":"121","GCustId":"Chintu","MCustId":"Ghosla","balance":"223334","remainingBalLeft":"1223","maxLimit":"1223"}
+{"acctNumber":"121","pin":"121","GCustId":"121","MCustId":"122","balance":"251652","remainingBalLeft":"32442","maxLimit":"32442"}
+{"acctNumber":"122","pin":"121","GCustId":"123","MCustId":"124","balance":"23313","remainingBalLeft":"3343","maxLimit":"3343"}
+{"acctNumber":"123","pin":"121","GCustId":"125","MCustId":"126","balance":"333112","remainingBalLeft":"2333","maxLimit":"2333"}
+{"acctNumber":"124","pin":"121","GCustId":"127","MCustId":"128","balance":"223334","remainingBalLeft":"1223","maxLimit":"1223"}
