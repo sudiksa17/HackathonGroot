@@ -10,8 +10,19 @@ public class LimitDto {
   @JsonProperty("limitPerDay")
   private String limitPerDay;
 
+  @JsonProperty("status")
+  private String status;
+
   public String getAccountNumber() {
     return accountNumber;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
   }
 
   public void setAccountNumber(String accountNumber) {
