@@ -1,4 +1,4 @@
-package com.gonuclei.hackathonGroot;
+package com.gonuclei.hackathonGroot.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

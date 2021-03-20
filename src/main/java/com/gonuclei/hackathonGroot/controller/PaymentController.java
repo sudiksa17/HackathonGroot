@@ -1,7 +1,9 @@
-package com.gonuclei.hackathonGroot;
+package com.gonuclei.hackathonGroot.controller;
 
 import com.gonuclei.hackathonGroot.entity.Account;
 import com.gonuclei.hackathonGroot.entity.Users;
+import com.gonuclei.hackathonGroot.repo.AccountRepoService;
+import com.gonuclei.hackathonGroot.repo.UserRepoService;
 import com.gonuclei.hackathonGroot.request.PaymentRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,9 +24,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("payment")
 public class PaymentController {
-
-  @Autowired
-  LoginService loginService;
 
   @Autowired
   UserRepoService userRepoService;

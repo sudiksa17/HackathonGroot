@@ -1,7 +1,9 @@
-package com.gonuclei.hackathonGroot;
+package com.gonuclei.hackathonGroot.controller;
 
 import com.gonuclei.hackathonGroot.entity.Account;
 import com.gonuclei.hackathonGroot.entity.Users;
+import com.gonuclei.hackathonGroot.repo.AccountRepoService;
+import com.gonuclei.hackathonGroot.repo.UserRepoService;
 import com.gonuclei.hackathonGroot.request.ConfigRequest;
 import com.gonuclei.hackathonGroot.request.LimitDto;
 import com.gonuclei.hackathonGroot.request.LoginDto;
@@ -26,17 +28,15 @@ import java.util.Optional;
 public class LoginController {
 
   @Autowired
-  public LoginService loginService;
-  @Autowired
   public UserRepoService userRepoService;
   @Autowired
   AccountRepoService accountRepoService;
 
-  @GetMapping(path = "getUsers")
-  public ResponseEntity<String> getUsers() {
-    List<Users> usersList = loginService.readUsers();
-    return new ResponseEntity<>(usersList.get(1).buildParams(), HttpStatus.OK);
-  }
+//  @GetMapping(path = "getUsers")
+//  public ResponseEntity<String> getUsers() {
+//    List<Users> usersList = loginService.readUsers();
+//    return new ResponseEntity<>(usersList.get(1).buildParams(), HttpStatus.OK);
+//  }
 
   @PostMapping(path = "fetchDetails")
   public ResponseEntity<Map> fetchDetails(@RequestBody LoginDto loginDto){

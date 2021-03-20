@@ -1,4 +1,4 @@
-package com.gonuclei.hackathonGroot;
+package com.gonuclei.hackathonGroot.repo;
 
 import com.gonuclei.hackathonGroot.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
