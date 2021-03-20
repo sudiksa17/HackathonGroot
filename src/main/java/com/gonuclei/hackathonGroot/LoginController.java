@@ -2,6 +2,7 @@ package com.gonuclei.hackathonGroot;
 
 import com.gonuclei.hackathonGroot.entity.Account;
 import com.gonuclei.hackathonGroot.entity.Users;
+import com.gonuclei.hackathonGroot.request.ConfigRequest;
 import com.gonuclei.hackathonGroot.request.LimitDto;
 import com.gonuclei.hackathonGroot.request.LoginDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,37 @@ public class LoginController {
       response.put("Status",status);
     } else if(us.isPresent() && us.get().getPassword().equals(loginDto.getPassword())
       && (account.get().getStatus().equals("1") || us.get().getUserType().equals("G"))) {
+      status.put("message", "Success");
+      status.put("code", 200);
+      response.put("Status", status);
+      response.put("user", us);
+      response.put("Account", account);
+    } else if(account.get().getStatus().equals("0")) {
+      status.put("message","Blocked");
+      status.put("code",402);
+      response.put("Status",status);
+    } else {
+      status.put("message","Failure");
+      status.put("code",401);
+      response.put("Status",status);
+    }
+    return new ResponseEntity<>(response, HttpStatus.OK);
+  }
+
+  @PostMapping(path = "getConfig")
+  public ResponseEntity<Map> getConfig(@RequestBody ConfigRequest request){
+    Map<Object, Object> status = new HashMap<>();
+    Map<Object, Object> response = new HashMap<>();
+    if(!userRepoService.existsById(Long.parseLong(request.getCustId()))) {
+      status.put("message","Failure");
+      status.put("code",401);
+      response.put("Status",status);
+      return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    Optional<Users> us = userRepoService.findById(Long.parseLong(request.getCustId()));
+    Optional<Account> account = accountRepoService.findById(us.get().getAcctNumber());
+    if(us.isPresent()
+            && (account.get().getStatus().equals("1") || us.get().getUserType().equals("G"))) {
       status.put("message", "Success");
       status.put("code", 200);
       response.put("Status", status);
