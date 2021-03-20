@@ -46,7 +46,7 @@ public class PaymentController {
       us.get().getAcctNumber();
     } catch (Exception e) {
       status.put("message","Unauthorised");
-      status.put("code",300);
+      status.put("code",401);
       response.put("Status",status);
       return response;
     }
